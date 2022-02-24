@@ -139,7 +139,7 @@ Take LSTM on OJClone for example.
 > ..
 ```
 
-3. Go back to step 1 to update the adversarial example set upon the training set.
+3. Go back to step 1 to iteratively update the adversarial example set upon the current training set.
 
 ## Citation
 
