@@ -83,7 +83,7 @@ class AdversarialTrainingAttacker(object):
         adv_xs, adv_labels, adv_ids = [], [], []
         fail_pred_xs, fail_pred_labels, fail_pred_ids = [], [], []
         st_time = time.time()
-        for i in range(self.d.test.get_size()):
+        for i in range(self.d.train.get_size()):
             if len(adv_xs) >= adv_sample_size:
                 break
             b = self.d.test.next_batch(1)
@@ -190,7 +190,7 @@ class AdversarialTrainingAttackerRandom(object):
         adv_xs, adv_labels, adv_ids = [], [], []
         fail_pred_xs, fail_pred_labels, fail_pred_ids = [], [], []
         st_time = time.time()
-        for i in range(self.d.test.get_size()):
+        for i in range(self.d.train.get_size()):
             if len(adv_xs) >= adv_sample_size:
                 break
             b = self.d.test.next_batch(1)
@@ -305,7 +305,7 @@ class AdversarialTrainingInsAttacker(object):
         adv_xs, adv_labels, adv_ids = [], [], []
         fail_pred_xs, fail_pred_labels, fail_pred_ids = [], [], []
         st_time = time.time()
-        for i in range(self.d.test.get_size()):
+        for i in range(self.d.train.get_size()):
             if len(adv_xs) >= adv_sample_size:
                 break
             b = self.d.test.next_batch(1)
@@ -412,7 +412,7 @@ class AdversarialTrainingInsAttackerRandom(object):
         adv_xs, adv_labels, adv_ids = [], [], []
         fail_pred_xs, fail_pred_labels, fail_pred_ids = [], [], []
         st_time = time.time()
-        for i in range(self.d.test.get_size()):
+        for i in range(self.d.train.get_size()):
             if len(adv_xs) >= adv_sample_size:
                 break
             b = self.d.test.next_batch(1)
