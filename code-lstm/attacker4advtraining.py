@@ -86,10 +86,10 @@ class AdversarialTrainingAttacker(object):
         for i in range(self.d.train.get_size()):
             if len(adv_xs) >= adv_sample_size:
                 break
-            b = self.d.test.next_batch(1)
-            print ("\t%d/%d\tID = %d\tY = %d" % (i+1, self.d.test.get_size(), b['id'][0], b['y'][0]))
+            b = self.d.train.next_batch(1)
+            print ("\t%d/%d\tID = %d\tY = %d" % (i+1, self.d.train.get_size(), b['id'][0], b['y'][0]))
             start_time = time.time()
-            tag, x, typ = self.attack(b['x'], b['y'], self.syms['te'][b['id'][0]], n_candidate, n_iter)
+            tag, x, typ = self.attack(b['x'], b['y'], self.syms['tr'][b['id'][0]], n_candidate, n_iter)
             x = x[0]
             if tag:
                 n_succ += 1
@@ -193,10 +193,10 @@ class AdversarialTrainingAttackerRandom(object):
         for i in range(self.d.train.get_size()):
             if len(adv_xs) >= adv_sample_size:
                 break
-            b = self.d.test.next_batch(1)
-            print ("\t%d/%d\tID = %d\tY = %d" % (i+1, self.d.test.get_size(), b['id'][0], b['y'][0]))
+            b = self.d.train.next_batch(1)
+            print ("\t%d/%d\tID = %d\tY = %d" % (i+1, self.d.train.get_size(), b['id'][0], b['y'][0]))
             start_time = time.time()
-            tag, x, typ = self.attack(b['x'], b['y'], self.syms['te'][b['id'][0]], n_iter)
+            tag, x, typ = self.attack(b['x'], b['y'], self.syms['tr'][b['id'][0]], n_iter)
             x = x[0]
             if tag:
                 n_succ += 1
@@ -308,10 +308,10 @@ class AdversarialTrainingInsAttacker(object):
         for i in range(self.d.train.get_size()):
             if len(adv_xs) >= adv_sample_size:
                 break
-            b = self.d.test.next_batch(1)
-            print ("\t%d/%d\tID = %d\tY = %d" % (i+1, self.d.test.get_size(), b['id'][0], b['y'][0]))
+            b = self.d.train.next_batch(1)
+            print ("\t%d/%d\tID = %d\tY = %d" % (i+1, self.d.train.get_size(), b['id'][0], b['y'][0]))
             start_time = time.time()
-            tag, x, typ = self.attack(b['x'], b['y'], self.inss['stmt_te'][b['id'][0]], n_candidate, n_iter)
+            tag, x, typ = self.attack(b['x'], b['y'], self.inss['stmt_tr'][b['id'][0]], n_candidate, n_iter)
             x = x[0]
             if tag:
                 n_succ += 1
@@ -340,7 +340,7 @@ class AdversarialTrainingInsAttacker(object):
                              "adv_x": adv_xs, 
                              "adv_label": adv_labels,
                              "adv_id": adv_ids}, f)
-        print("[Task Done] Time Cost: %.1f sec Succ Rate: %.3f" % (time.time()-st_time, n_succ/self.d.test.get_size()))
+        print("[Task Done] Time Cost: %.1f sec Succ Rate: %.3f" % (time.time()-st_time, n_succ/self.d.train.get_size()))
 
 class AdversarialTrainingInsAttackerRandom(object):
     
@@ -415,10 +415,10 @@ class AdversarialTrainingInsAttackerRandom(object):
         for i in range(self.d.train.get_size()):
             if len(adv_xs) >= adv_sample_size:
                 break
-            b = self.d.test.next_batch(1)
-            print ("\t%d/%d\tID = %d\tY = %d" % (i+1, self.d.test.get_size(), b['id'][0], b['y'][0]))
+            b = self.d.train.next_batch(1)
+            print ("\t%d/%d\tID = %d\tY = %d" % (i+1, self.d.train.get_size(), b['id'][0], b['y'][0]))
             start_time = time.time()
-            tag, x, typ = self.attack(b['x'], b['y'], self.inss['stmt_te'][b['id'][0]], n_iter)
+            tag, x, typ = self.attack(b['x'], b['y'], self.inss['stmt_tr'][b['id'][0]], n_iter)
             x = x[0]
             if tag:
                 n_succ += 1
@@ -447,7 +447,7 @@ class AdversarialTrainingInsAttackerRandom(object):
                              "adv_x": adv_xs, 
                              "adv_label": adv_labels,
                              "adv_id": adv_ids}, f)
-        print("[Task Done] Time Cost: %.1f sec Succ Rate: %.3f" % (time.time()-st_time, n_succ/self.d.test.get_size()))
+        print("[Task Done] Time Cost: %.1f sec Succ Rate: %.3f" % (time.time()-st_time, n_succ/self.d.train.get_size()))
   
 if __name__ == "__main__":
     
